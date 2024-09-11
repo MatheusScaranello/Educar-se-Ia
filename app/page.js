@@ -1,95 +1,47 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import styles from './page.module.css';
+import Link from 'next/link';
 
-export default function Home() {
+// Importe suas imagens e outros recursos necessários
+import logo from '../public/logo.png';
+
+export default function EpicVinheta() {
+  const [isHovered, setIsHovered] = useState(false);
+  const [fadeAnim, setFadeAnim] = useState(0);
+
+  useEffect(() => {
+    const fadeInterval = setInterval(() => {
+      setFadeAnim((prev) => Math.min(prev + 0.05, 1));
+    }, 100);
+
+    return () => clearInterval(fadeInterval);
+  }, []);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className={styles.container} style={{ opacity: fadeAnim }}>
+      <div className={styles.header}>
+        <img src={logo.src} alt="Logo" className={styles.logo} />
+        <h1 className={styles.title}>Intelligence</h1>
+      </div>
+      <div className={styles.additionalContent}><Link href="/introducao">
+        <button 
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          className={isHovered ? styles.buttonTextHovered : styles.buttonText}
         >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          Iniciar
+        </button></Link>
+      </div>
     </div>
   );
 }

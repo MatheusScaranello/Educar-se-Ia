@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.score, .health, .timer, .hints {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.button {
+  background-color: #0070f3;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.button:hover:not(:disabled) {
+  background-color: #005bb5;
+}
+
+.gameOverContainer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.gameOverText {
+  font-size: 24px;
+  color: #ff4c4c;
+  margin-bottom: 10px;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin-top: 20px;
+}
+
+.infoText {
+  font-size: 18px;
+  line-height: 1.6;
+  text-align: center;
+  color: #333;
+}
